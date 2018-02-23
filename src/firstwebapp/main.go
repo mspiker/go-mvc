@@ -20,8 +20,6 @@ func main() {
 		default:
 			context = viewmodel.NewBase()
 		}
-
-		//context := viewmodel.NewBase()
 		if template != nil {
 			template.Execute(w, context)
 		} else {

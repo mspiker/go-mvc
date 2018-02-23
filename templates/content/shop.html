@@ -1,18 +1,15 @@
 {{define "content"}}
     <div class="starter-template">
       <h1>Welcome to the Shop</h1>
-      
-      
-
       <a href="home">Return Home</a>
     </div>
 
     <div>
         <p>Here are a list of items:</p>
         <ol>
-            <li>{{(index .Categories 0).Title}}</li>
-            <li>{{(index .Categories 1).Title}}</li>
-            <li>{{(index .Categories 2).Title}}</li>
+            {{range .Categories}}
+            <li>{{.Title}}</li>
+            {{end}}
         </ol>
     </div>
 {{end}}
