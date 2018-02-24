@@ -1,7 +1,7 @@
 package main
 
 import (
-	"firstwebapp/viewmodel"
+	"firstwebapp/controller"
 	"html/template"
 	"io/ioutil"
 	"net/http"
@@ -10,24 +10,7 @@ import (
 
 func main() {
 	templates := populateTemplates()
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		requestedFile := r.URL.Path[1:]
-		template := templates[requestedFile+".html"]
-		var context interface{}
-		switch requestedFile {
-		case "shop":
-			context = viewmodel.NewShop()
-		default:
-			context = viewmodel.NewBase()
-		}
-		if template != nil {
-			template.Execute(w, context)
-		} else {
-			w.WriteHeader(404)
-		}
-	})
-	http.Handle("/img/", http.FileServer(http.Dir("../public")))
-	http.Handle("/css/", http.FileServer(http.Dir("../public")))
+	controller.Startup(templates)
 	http.ListenAndServe(":8000", nil)
 }
 
