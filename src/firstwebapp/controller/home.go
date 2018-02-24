@@ -16,6 +16,5 @@ func (h home) registerRoutes() {
 
 func (h home) handleHome(w http.ResponseWriter, r *http.Request) {
 	//vm := viewmodel.NewHome()
-
 	h.homeTemplate.Execute(w, nil)
 }
